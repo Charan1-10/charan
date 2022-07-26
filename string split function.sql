@@ -1,0 +1,3 @@
+for multi integer input values
+where id in(select cast(value as int) from string_split(@value,','))
+ code for string splitCReate Function [dbo].[Split_Function](@InputString VARCHAR(100),@Separator CHAR(1))Returns @Output Table(Value VARCHAR(100))As BeginDeclare @Position INTSet @Position=CHarindex(@Separator,@inputstring)---0While @Position>0---whether we have multiple values or not	Begin		Insert into @Output		Select SUBSTRING(@Inputstring,1,@Position-1)--A		Set @Inputstring=stuff(@Inputstring,1,@Position,'')--->A,---withpoutspaces--->E				Set @Position=CHarindex(@Separator,@inputstring)---2	endInsert into @OutputSelect @InputStringReturnEnd
